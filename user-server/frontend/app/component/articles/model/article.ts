@@ -3,7 +3,7 @@ export interface IArticle{
     title?: string,
     content?: string,
     writer?: string,
-    boardType?: string,
+    boardTitle?: string,
     regDate?: string,
     modDate?: string,
     json?: IArticle,

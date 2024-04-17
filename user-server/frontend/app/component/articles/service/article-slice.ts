@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./article-init";
-import { deleteArticle, findAllArticles, findArticleById, findArticlesCount, modifyArticle } from "./article-service";
+import { deleteArticle, findAllArticles, findArticleById, findArticlesByBoardId, findArticlesCount, modifyArticle } from "./article-service";
 
 const status = {
     pending: "pending",
@@ -24,10 +24,11 @@ export const articleSlice = createSlice({
         .addCase(findArticlesCount.fulfilled, (state:any, {payload}:any) => {state.count = payload})
         .addCase(modifyArticle.fulfilled, (state:any, {payload}:any) => {})
         .addCase(deleteArticle.fulfilled, (state:any, {payload}:any) => {state.json = {}})
+        .addCase(findArticlesByBoardId.fulfilled, (state:any, {payload}:any) => {state.array = payload})
     }
 })
 
-export const getAllArticles = (state: any) => state.article.array
+export const getArticles = (state: any) => state.article.array
 export const getArticleById = (state: any) => state.article.json
 export const getArticlesCount = (state: any) => state.article.count
 

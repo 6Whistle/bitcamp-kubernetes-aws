@@ -5,7 +5,7 @@ export const initialState:IArticle = {
     title: "",
     content: "",
     writer: "",
-    boardType: "",
+    boardTitle: "",
     regDate: "",
     modDate: "",
     json: {},

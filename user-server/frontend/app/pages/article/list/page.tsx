@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllArticles, getArticlesCount } from "@/app/component/articles/service/article-slice";
+import { getArticles, getArticlesCount } from "@/app/component/articles/service/article-slice";
 import { findAllArticles, findArticlesCount } from "@/app/component/articles/service/article-service";
 import ArticleColumns from "@/app/component/articles/module/article-columns";
 import { DataGrid } from "@mui/x-data-grid";
@@ -21,7 +21,7 @@ const cards = [
 
 export default function ArticleListPage(){
   const dispatch = useDispatch()
-  const allArticles: IArticle[] = useSelector(getAllArticles)
+  const allArticles: IArticle[] = useSelector(getArticles)
   const articlesCount:number = useSelector(getArticlesCount)
 
   useEffect(() => {

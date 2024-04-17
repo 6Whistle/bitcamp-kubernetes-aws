@@ -18,14 +18,14 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
         .title(entity.getTitle())
         .content(entity.getContent())
         .writer(entity.getWriter().getUsername())
-        .boardType(entity.getBoard().getBoardType())
+        .boardTitle(entity.getBoard().getTitle())
         .regDate(entity.getRegLocalDateTime().toString())
         .modDate(entity.getModLocalDateTime().toString())
         .build();
     }
 
     Optional<User> findUserByUsername(String username);
-    Optional<Board> findBoardByBoardType(String username);
+    Optional<Board> findBoardByTitle(String username);
 
     List<ArticleDto> findArticlesByWriterId(Long id);
     List<ArticleDto> findArticlesByBoardId(Long id);

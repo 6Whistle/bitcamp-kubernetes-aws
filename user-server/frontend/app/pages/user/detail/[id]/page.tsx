@@ -2,7 +2,6 @@
 
 import { PG } from "@/app/component/common/enums/PG";
 import { RQ } from "@/app/component/common/enums/RQ";
-import MyTypography from "@/app/component/common/style/cell";
 import { IUser } from "@/app/component/users/model/user";
 import { deleteUser, findUserById, modifyUser } from "@/app/component/users/service/user-service";
 import { getUserById, jobHandler, nameHandler, passwordHandler, phoneHandler } from "@/app/component/users/service/user-slice";

@@ -2,13 +2,13 @@ spring:
   application:
     name: user
   datasource:
-    url: jdbc:mysql://localhost:3306/userdb
+    url: jdbc:mysql://3.39.62.117:3306/erichgammadb?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect

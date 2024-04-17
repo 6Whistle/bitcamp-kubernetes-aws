@@ -7,6 +7,7 @@ import { IUser } from "./component/users/model/user";
 import { login } from "./component/users/service/user-service";
 import { getAuth } from "./component/users/service/user-slice";
 import { parseCookies, setCookie } from "nookies"
+import { PG } from "./component/common/enums/PG";
 
 
 
@@ -37,7 +38,7 @@ export default function Home() {
 
   useEffect(()=>{
     if(auth.message==='SUCCESS'){
-      router.push('/pages/board/list')
+      router.push(`${PG.BOARD}/card`)
       setCookie({}, "message", auth.message, {httpOnly: false, path: '/'})
       setCookie({}, "token", auth.token, {httpOnly: false, path: '/'})
       console.log("server's message" + parseCookies().message)
@@ -50,6 +51,8 @@ export default function Home() {
 
   return (
   <div className='margincenter w-4/5 my-[30px] border-double border-4'>
+    <p>id : Houma</p>
+    <p>pw : Ironworker</p>
     <div className="text-3xl font-bold underline text-center">welcom to react world !!</div><br />
     <div className="flex items-center justify-center w-full px-5 sm:px-0">
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">

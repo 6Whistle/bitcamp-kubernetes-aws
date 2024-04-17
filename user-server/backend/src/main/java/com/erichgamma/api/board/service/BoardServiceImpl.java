@@ -23,8 +23,8 @@ public class BoardServiceImpl implements BoardService{
         return MessengerVo.builder()
         .message(
             Stream.of(boardDto)
-            .filter(i -> !existsByBoardType(i.getBoardType()))
-            .peek(i -> boardRepository.save(Board.builder().boardType(i.getBoardType()).build()))
+            .filter(i -> !existsByTitle(i.getTitle()))
+            .peek(i -> boardRepository.save(Board.builder().title(i.getTitle()).description(i.getDescription()).build()))
             .map(i -> "SUCCESS")
             .findAny()
             .orElseGet(() -> "FAILURE")
@@ -37,7 +37,8 @@ public class BoardServiceImpl implements BoardService{
         return MessengerVo.builder()
         .message(
             boardRepository.findById(boardDto.getId()).stream()
-            .peek(i -> i.setBoardType(boardDto.getBoardType()))
+            .peek(i -> i.setTitle(boardDto.getTitle()))
+            .peek(i -> i.setDescription(boardDto.getDescription()))
             .map(i -> boardRepository.save(i))
             .map(i -> "SUCCESS")
             .findAny()
@@ -93,7 +94,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public Boolean existsByBoardType(String boardType) {
-        return boardRepository.existsByBoardType(boardType);
+    public Boolean existsByTitle(String title) {
+        return boardRepository.existsByTitle(title);
     }
 }

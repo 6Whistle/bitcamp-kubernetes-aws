@@ -22,7 +22,9 @@ public class Board extends BaseEntity {
     private Long id;
 
     @Setter
-    private String boardType;
+    private String title;
+    @Setter
+    private String description;
 
     @OneToMany(mappedBy = "board")
     private List<Article> articles;    

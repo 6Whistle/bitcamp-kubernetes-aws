@@ -1,9 +1,7 @@
 export interface IBoard{
     id?: number,
-    boardType?: string,
+    title?: string,
+    description?: string,
     regDate?: string,
     modDate?: string,
-    json?: IBoard,
-    array?: IBoard[],
-    count?: number
 }

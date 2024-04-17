@@ -41,10 +41,10 @@ export default function ArticleColumns(): GridColDef[]{
         },
         { 
             flex: 0.04,
-            field: 'boardType',
+            field: 'boardTitle',
             minWidth: 30,
-            headerName: "board Type", 
-            renderCell: ({row}: CellType) => MyTypography(row.boardType, "1rem")
+            headerName: "Board Title", 
+            renderCell: ({row}: CellType) => MyTypography(row.boardTitle, "1rem")
         },
         { 
             flex: 0.04,

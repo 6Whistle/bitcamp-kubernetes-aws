@@ -21,11 +21,19 @@ export default function BoardColumns(): GridColDef[]{
         },
         { 
             flex: 0.04,
-            field: 'boardType',
+            field: 'title',
             minWidth: 30,
-            headerName: "Board Type", 
+            headerName: "Board Title", 
             renderCell: ({row}: CellType) => 
-            <Link href={`${PG.BOARD}${RQ.DETAIL}/${row.id}`}>{MyTypography(row.boardType, "1rem")}</Link>
+            <Link href={`${PG.BOARD}${RQ.DETAIL}/${row.id}`}>{MyTypography(row.title, "1rem")}</Link>
+        },
+        { 
+            flex: 0.04,
+            field: 'description',
+            minWidth: 30,
+            headerName: "description", 
+            renderCell: ({row}: CellType) => 
+            <Link href={`${PG.BOARD}${RQ.DETAIL}/${row.id}`}>{MyTypography(row.title, "1rem")}</Link>
         },
         {
             flex: 0.04,

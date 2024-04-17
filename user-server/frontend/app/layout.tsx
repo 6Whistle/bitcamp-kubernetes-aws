@@ -1,5 +1,4 @@
 'use client'
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
@@ -28,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <main className="mt-100">
         {parseCookies().message === "SUCCESS" && <Header/>}
         {parseCookies().message === "ADMIN" && <DashHeader/>}
-        <div className="mt-100">
         <ReduxProvider > {children}</ReduxProvider>
-        </div>
+        </main>
       </body>
     </html>
   );
