@@ -17,10 +17,10 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
         .id(entity.getId())
         .title(entity.getTitle())
         .content(entity.getContent())
-        .writer(entity.getWriter().getUsername())
-        .boardTitle(entity.getBoard().getTitle())
-        .regDate(entity.getRegLocalDateTime().toString())
-        .modDate(entity.getModLocalDateTime().toString())
+        .writer(entity.getWriter() == null ? "" : entity.getWriter().getUsername())
+        .boardTitle(entity.getBoard() == null ? "" : entity.getBoard().getTitle())
+        .regDate(entity.getRegLocalDateTime())
+        .modDate(entity.getModLocalDateTime())
         .build();
     }
 
@@ -28,5 +28,5 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
     Optional<Board> findBoardByTitle(String username);
 
     List<ArticleDto> findArticlesByWriterId(Long id);
-    List<ArticleDto> findArticlesByBoardId(Long id);
+    List<ArticleDto> findByBoardId(Long id);
 }

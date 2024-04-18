@@ -32,14 +32,14 @@ public class ArticleServiceImpl implements ArticleService{
         .message(
             Stream.of(articleDto)
             .filter(i -> userRepository.existsByUsername(i.getWriter()))
-            .filter(i -> boardRepository.existsByTitle(i.getTitle()))
+            .filter(i -> boardRepository.existsByTitle(i.getBoardTitle()))
             .peek(i -> articleRepository.save(
                 Article
                 .builder()
                 .title(i.getTitle())
                 .content(i.getContent())
                 .writer(findUserByUsername(i.getWriter()).get())
-                .board(findBoardByTitle(i.getTitle()).get())
+                .board(findBoardByTitle(i.getBoardTitle()).get())
                 .build())
             )
             .map(i -> "SUCCESS")
@@ -130,9 +130,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public List<ArticleDto> findArticlesByBoardId(Long id) {
-        return articleRepository.findByBoardId(id).stream()
-        .map(i -> entityToDto(i))
-        .toList();
+    public List<ArticleDto> findByBoardId(Long id) {
+        return articleRepository.getArticleDtosByBoardId(id);
     }
 }

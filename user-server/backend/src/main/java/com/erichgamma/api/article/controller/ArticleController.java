@@ -57,9 +57,9 @@ public class ArticleController {
     // -------------------------- Query -------------------------- 
 
     @GetMapping("/list")
-    public ResponseEntity<List<ArticleDto>> findAll(Pageable pageable){
-        log.info("findAll request : {}", pageable);
-        return ResponseEntity.ok(articleService.findAll());
+    public ResponseEntity<List<ArticleDto>> findByBoardId(Pageable pageable, @RequestParam("id") Long id){
+        log.info("findByBoardId request : {}", pageable);
+        return ResponseEntity.ok(articleService.findByBoardId(id));
     }
 
     @GetMapping("/detail")
@@ -76,11 +76,5 @@ public class ArticleController {
             .message(String.valueOf(articleService.count()))
             .build()
         );
-    }
-
-    @GetMapping("/search-board")
-    public ResponseEntity<List<ArticleDto>> findArticlesByBoardId(@RequestParam("id") Long id){
-        log.info("findArticlesByBoardId : {}", id);
-        return ResponseEntity.ok(articleService.findArticlesByBoardId(id));
     }
 }

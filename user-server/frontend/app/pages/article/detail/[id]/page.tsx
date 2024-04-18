@@ -2,7 +2,7 @@
 
 import { IArticle } from "@/app/component/articles/model/article";
 import { deleteArticle, findArticleById, modifyArticle } from "@/app/component/articles/service/article-service";
-import { contentHandler, getArticleById, titleHandler } from "@/app/component/articles/service/article-slice";
+import { contentHandler, getOneArticle, titleHandler } from "@/app/component/articles/service/article-slice";
 import { PG } from "@/app/component/common/enums/PG";
 import { RQ } from "@/app/component/common/enums/RQ";
 import { Button, Input } from "@mui/material";
@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 
 export default function ArticleDetailPage({params}:any){
     const dispatch = useDispatch();
-    const article:IArticle = useSelector(getArticleById)
+    const article:IArticle = useSelector(getOneArticle)
     const router = useRouter();
 
     useEffect(() => {

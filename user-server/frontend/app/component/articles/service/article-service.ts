@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { deleteArticleAPI, findAllArticlesAPI, findArticleByIdAPI, findArticlesByBoardIdAPI, findArticlesCountAPI, modifyArticleAPI } from "./article-api";
+import { deleteArticleAPI, findArticleByIdAPI, findArticlesByBoardIdAPI, findArticlesCountAPI, modifyArticleAPI, saveArticleAPI } from "./article-api";
 import { IArticle } from "../model/article";
 
-export const findAllArticles:any = createAsyncThunk('articles/findAllArticles', async (page:number) => await findAllArticlesAPI(page))
+// export const findAllArticles:any = createAsyncThunk('articles/findAllArticles', async (page:number) => await findAllArticlesAPI(page))
 
 export const findArticleById:any = createAsyncThunk('articles/findArticleById', async (id:number) => await findArticleByIdAPI(id))
 
@@ -12,4 +12,6 @@ export const modifyArticle:any = createAsyncThunk('articles/modifiyArticle', asy
 
 export const deleteArticle:any = createAsyncThunk('articles/deleteArticle', async (id:number) => await deleteArticleAPI(id))
 
-export const findArticlesByBoardId:any = createAsyncThunk('articles/findArticlesByBoardId', async (id:number) => await findArticlesByBoardIdAPI(id))
+export const findArticlesByBoardId:any = createAsyncThunk('articles/findArticlesByBoardId', async ({page, id}:any) => await findArticlesByBoardIdAPI(page, id))
+
+export const saveArticle:any = createAsyncThunk('articles/saveArticle', async (article: IArticle) => await saveArticleAPI(article))

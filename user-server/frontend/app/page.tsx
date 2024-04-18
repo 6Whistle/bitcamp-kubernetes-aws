@@ -8,6 +8,7 @@ import { login } from "./component/users/service/user-service";
 import { getAuth } from "./component/users/service/user-slice";
 import { parseCookies, setCookie } from "nookies"
 import { PG } from "./component/common/enums/PG";
+import { RQ } from "./component/common/enums/RQ";
 
 
 
@@ -38,7 +39,7 @@ export default function Home() {
 
   useEffect(()=>{
     if(auth.message==='SUCCESS'){
-      router.push(`${PG.BOARD}/card`)
+      router.push(`${PG.BOARD}${RQ.LIST}`)
       setCookie({}, "message", auth.message, {httpOnly: false, path: '/'})
       setCookie({}, "token", auth.token, {httpOnly: false, path: '/'})
       console.log("server's message" + parseCookies().message)

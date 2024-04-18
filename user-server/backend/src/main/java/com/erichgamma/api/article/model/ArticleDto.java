@@ -1,5 +1,7 @@
 package com.erichgamma.api.article.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +20,6 @@ public class ArticleDto {
     private String content;
     private String writer;
     private String boardTitle;
-    private String regDate;
-    private String modDate;
+    private LocalDateTime regDate;
+    private LocalDateTime modDate;
 }
