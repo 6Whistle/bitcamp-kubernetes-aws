@@ -85,6 +85,10 @@ public class UserController {
         );
     }
 
+    @PostMapping("/exist-username")
+    public ResponseEntity<MessengerVo> existByUsername(@RequestBody String username){
+        return ResponseEntity.ok(userService.existsByUsername(username));
+    }
     
     // @PostMapping("/search")
     // public ResponseEntity<List<UserDto>> findUsersByName(@RequestParam("name") String job){

@@ -1,5 +1,6 @@
 package com.erichgamma.api.user.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -12,8 +13,11 @@ import com.erichgamma.api.user.model.User;
 import com.erichgamma.api.user.model.UserDto;
 import com.erichgamma.api.user.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -110,16 +114,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsById(id);
     }
 
+    @Transactional
     @Override
     public MessengerVo login(UserDto userDto){
-        Boolean flag = findUserByUsername(userDto.getUsername()).stream()
-        .filter(i -> i.getPassword().equals(userDto.getPassword())).findAny().isPresent();
-
-
-        return MessengerVo.builder()
-        .message(flag ? "SUCCESS" : "FAILURE")
-        .token(flag ? jwtProvider.createToken(userDto) : "None")
-        .build();
+        return findUserByUsername(userDto.getUsername()).stream()
+        .filter(i -> i.getPassword().equals(userDto.getPassword()))
+        .map(i -> List.of(i.getId(), jwtProvider.createToken(entityToDto(i))))
+        .peek(i -> userRepository.modifyTokenById((Long)i.get(0), (String)i.get(1)))
+        .map(i -> MessengerVo.builder().message("SUCCESS").token((String)i.get(1)).build())
+        .findAny().orElseGet(() -> MessengerVo.builder().message("FAILURE").token("").build());
     }
 
     @Override
@@ -130,5 +133,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> findUsersByJob(String job) {
         return userRepository.findByJob(job).stream().map(i -> entityToDto(i)).toList();
+    }
+
+    @Override
+    public MessengerVo existsByUsername(String username) {
+        return MessengerVo.builder().message(userRepository.existsByUsername(username) ? "SUCCESS" : "FAILURE").build();
     }
 }

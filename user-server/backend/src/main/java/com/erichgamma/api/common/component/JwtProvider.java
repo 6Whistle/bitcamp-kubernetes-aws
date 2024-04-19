@@ -31,17 +31,14 @@ public class JwtProvider {
     }
 
     public String createToken(UserDto user){
-        String jwt = Jwts.builder()
+        return Jwts.builder()
         .signWith(secretKey)
         .issuer(issuer)
         .expiration(Date.from(expiredDate))
         .subject("bitcamp")
         .claim("username", user.getUsername())
         .claim("job", user.getJob())
-        .claim("userId", user.getId())
+        .claim("userid", user.getId())
         .compact();
-
-        log.info("jwt token : " + jwt);
-        return jwt;
     }
 }

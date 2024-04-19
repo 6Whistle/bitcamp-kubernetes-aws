@@ -57,3 +57,12 @@ export const loginAPI = async (user:IUser) => {
         return error
     }
 }
+
+export const existByUsernameAPI = async (username:string) => {
+    try {
+        return (await instance.post(`${API.USER}/exist-username`, username)).data.message
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+} 

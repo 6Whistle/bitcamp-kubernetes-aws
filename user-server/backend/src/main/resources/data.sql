@@ -1,21 +1,21 @@
 -- insert into boards (id, title, description, reg_date, mod_date) values(1, "review", "user's review", now(), now());
 -- insert into boards (id, title, description, reg_date, mod_date) values(2, "qna", "user's qna", now(), now());
 
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (1, 'Clarinda', 'Boilermaker', 'Chrissie', '230-644-4753', 'Professor', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (2, 'Culion Island', 'Ironworker', 'Fannie', '372-654-5644', 'Analog Circuit Design manager', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (3, 'Houma', 'Ironworker', 'Zaria', '921-901-6334', 'Media Manager II', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (4, 'Recife', 'Tile Setter', 'Alisun', '868-948-4104', 'Budget/Accounting Analyst I', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (5, 'Sege', 'Plasterers', 'Pennie', '940-551-8764', 'Financial Analyst', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (6, 'Nacala', 'Millwright', 'Gertruda', '517-268-7651', 'VP Marketing', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (7, 'Tobermorey', 'Safety Officer', 'Harli', '136-238-7702', 'VP Sales', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (8, 'Mende/Brénoux', 'HVAC', 'Rosalia', '524-152-5660', 'Help Desk Technician', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (9, 'Bouarfa', 'Refridgeration', 'Eugenie', '913-369-7000', 'Executive Secretary', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (10, 'Bucharest', 'Sheet Metal Worker', 'Nina', '688-278-3563', 'Payment Adjustment Coordinator', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (11, 'Kepi-Papua Island', 'Tile Setter', 'Ashley', '595-588-1044', 'Geologist III', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (12, 'Cairo', 'Waterproofer', 'Antonia', '202-338-4567', 'Tax Accountant', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (13, 'Butare', 'Plasterers', 'Martita', '978-322-8638', 'Engineer I', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (14, 'Buenaventura', 'Welder', 'Min', '472-388-3046', 'Human Resources Assistant II', now(), now());
--- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (15, 'opera', 'Equipment Operator', 'Antonie', '658-863-0908', 'Physical Therapy Assistant', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (1, 'Clarinda', 'Boilermaker1!', 'Chrissie', '230-644-4753', 'Professor', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (2, 'CulionIsland', 'Ironworker1!', 'Fannie', '372-654-5644', 'Analog Circuit Design manager', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (3, 'HoumaHouma', 'Ironworker1!', 'Zaria', '921-901-6334', 'Media Manager II', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (4, 'Recife', 'TileSetter1!', 'Alisun', '868-948-4104', 'Budget/Accounting Analyst I', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (5, 'SegeSege', 'Plasterers1!', 'Pennie', '940-551-8764', 'Financial Analyst', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (6, 'Nacala', 'Millwright1!', 'Gertruda', '517-268-7651', 'VP Marketing', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (7, 'Tobermorey', 'SafetyOfficer1!', 'Harli', '136-238-7702', 'VP Sales', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (8, 'MendeBrenoux', 'HVACHVAC1!', 'Rosalia', '524-152-5660', 'Help Desk Technician', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (9, 'Bouarfa', 'Refridgeration1!', 'Eugenie', '913-369-7000', 'Executive Secretary', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (10, 'Bucharest', 'SheetMetalWork1!', 'Nina', '688-278-3563', 'Payment Adjustment Coordinator', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (11, 'KepiPapuaIsland', 'TileSetter1!', 'Ashley', '595-588-1044', 'Geologist III', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (12, 'Cairo11', 'Waterproofer1!', 'Antonia', '202-338-4567', 'Tax Accountant', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (13, 'Butare', 'Plasterers1!', 'Martita', '978-322-8638', 'Engineer I', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (14, 'Buenaventura', 'Welder1!', 'MinMinMin', '472-388-3046', 'Human Resources Assistant II', now(), now());
+-- insert into users (id, username, password, name, phone, job , reg_date, mod_date) values (15, 'opera1', 'EquipmentOperator1!', 'Antonie', '658-863-0908', 'Physical Therapy Assistant', now(), now());
 
 -- insert into articles (id, writer_id, board_id, title, content, reg_date, mod_date ) values (1, 1, 1, 'Halloween II', 'Fire Protection', now(), now());
 -- insert into articles (id, writer_id, board_id, title, content, reg_date, mod_date ) values (2, 2, 2, 'Stationmaster Is on Fire - The Movie, That Is!, The (Stinsen brinner... filmen alltså)', 'Framing (Steel)', now(), now());

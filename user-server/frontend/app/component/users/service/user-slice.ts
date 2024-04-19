@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteUser, findAllUsers, findUserById, findUsersCount, login, modifyUser } from "./user-service";
+import { deleteUser, existByUsername, findAllUsers, findUserById, findUsersCount, login, modifyUser } from "./user-service";
 import { IUser } from "../model/user";
 
 const status = {
@@ -17,12 +17,17 @@ interface userState{
     array?: IUser[]
     json?: IUser
     auth?: IAuth
+    exist?: string
 }
 
 const initialState:userState = {
     array: [],
     json: {} as IUser,
-    auth: {} as IAuth
+    auth: { 
+        message: "",
+        token: "",
+    },
+    exist: "",
 }
 
 export const userSlice = createSlice({
@@ -43,6 +48,7 @@ export const userSlice = createSlice({
         builder.addCase(modifyUser.fulfilled, (state:any, {payload}:any) => {})
         builder.addCase(deleteUser.fulfilled, (state:any, {payload}:any) => {state.json = {} as IUser})
         builder.addCase(login.fulfilled, (state:any, {payload}:any) => {    state.auth = payload })
+        builder.addCase(existByUsername.fulfilled, (state:any, {payload}:any) => {state.exist = payload})
     }
 })
 
@@ -50,6 +56,8 @@ export const getAllUsers = (state:any):IUser[] => state.user.array
 export const getUserById = (state:any):IUser => state.user.json
 export const getUsersCount = (state:any):number => state.user.count
 export const getAuth = (state:any):IAuth => state.user.auth
+export const getExistByUsername = (state:any):string => state.user.exist
+
 
 export const { passwordHandler, nameHandler, phoneHandler, jobHandler } = userSlice.actions
 export default userSlice.reducer
