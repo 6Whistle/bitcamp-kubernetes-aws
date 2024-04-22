@@ -3,11 +3,11 @@ import { PG } from "@/app/component/common/enums/PG";
 import { RQ } from "@/app/component/common/enums/RQ";
 import Link from "next/link";
 
-export default function CardButton({id, title, description}: IBoard){
+export default function CardButton({id, title, description, image}: any){
     return <li>
     <div className="mx-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <Link href={`${PG.ARTICLE}/${RQ.LIST}/${id}`}>
-        <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
+        <img className="rounded-t-lg" src={image} alt="" />
     </Link>
     <div className="p-5">
         <Link href={`${PG.ARTICLE}/${RQ.LIST}/${id}`}>

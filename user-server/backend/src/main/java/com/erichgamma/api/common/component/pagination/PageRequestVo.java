@@ -1,4 +1,4 @@
-package com.erichgamma.api.common.component;
+package com.erichgamma.api.common.component.pagination;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

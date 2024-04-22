@@ -8,17 +8,27 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 
-export default function BoardCards(){
-    const dispatch = useDispatch()
-    const allBoards:IBoard[] = useSelector(getAllBoards)
+const cards = [
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/mountain-nightview.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/autumn.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/babypinetree.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/beach.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/purpleflowers.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/starrysky.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/lake.jpg",
+  ];
 
-    useEffect(() => {
-        dispatch(findAllBoards())
-    }, [])  
+export default function BoardCards(){
+        const dispatch = useDispatch()
+        const allBoards:IBoard[] = useSelector(getAllBoards)
+
+        useEffect(() => {
+            dispatch(findAllBoards())
+        }, [])  
 
     return (
         <ul className="flexcenter">
-            {allBoards && allBoards.map((board:IBoard) => <CardButton key={board.id} id={board.id} title={board.title} description={board.description}/>)}
+            {allBoards && allBoards.map((board:IBoard, index) => <CardButton key={board.id} id={board.id} title={board.title} description={board.description} image={cards[index]}/>)}
         </ul>
         )
 }

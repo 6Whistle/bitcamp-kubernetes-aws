@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,8 +17,8 @@ export default function Home() {
   const router = useRouter();
   const dispatch = useDispatch();
   const auth: any = useSelector(getAuth);
-
   const existId: string = useSelector(getExistByUsername);
+  const passwordRef = useRef<HTMLInputElement>(null)
 
   const [user, setUser] = useState({} as IUser);
   // const [isWrongId, setIsWrongId] = useState(true)
@@ -47,24 +47,23 @@ export default function Home() {
     });
   };
 
-  const handleUsernameButton = () => {
-    dispatch(existByUsername(user.username));
-  };
-
   const handleSubmit = () => {
-    dispatch(login(user));
-    // console.log("user ..." + JSON.stringify(user));
-  };
+    if (isWrongId !== "false" || isWrongPassword !== "false") return;
+    dispatch(existByUsername(user.username)).then((res: any) => {
+      if (res.payload !== "SUCCESS") return;
+      dispatch(login(user))
+      .then((res: any) => {
+        if(res.payload.message !== "SUCCESS")  return;
+        setCookie({}, "message", res.payload.message, { httpOnly: false, path: "/" });
+        setCookie({}, "accessToken", res.payload.accessToken, { httpOnly: false, path: "/" });
 
-  useEffect(() => {
-    if (auth.message === "SUCCESS") {
-      router.push(`${PG.BOARD}${RQ.LIST}`);
-      setCookie({}, "message", auth.message, { httpOnly: false, path: "/" });
-      setCookie({}, "token", auth.token, { httpOnly: false, path: "/" });
-      console.log("server's message" + parseCookies().message);
-      console.log("server's token" + parseCookies().token);
-    }
-  }, [auth.message]);
+        console.log("server's message : " + parseCookies().message);
+        console.log("server's accessToken : " + parseCookies().accessToken);
+        router.push(`${PG.BOARD}${RQ.LIST}`);
+      });
+    });
+    if(passwordRef.current) passwordRef.current.value = "";
+  };
 
   return (
     <div className="margincenter w-4/5 my-[30px] border-double border-4">
@@ -84,35 +83,33 @@ export default function Home() {
           ></div>
           <div className="w-full p-8 lg:w-1/2">
             <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-            {existId !== "SUCCESS" && (
-              <div className="mt-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  ID
-                </label>
-                <input
-                  onChange={handleUsername}
-                  className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-                  type="email"
-                  required
-                />
-                {isWrongId === "true" && (
-                  <pre>
-                    <h6 className="text-red-600">Wrong ID Type</h6>
-                  </pre>
-                )}
-                {isWrongId === "false" && existId !== "FAILURE" && (
-                  <pre>
-                    <h6 className="text-blue-600">Correct ID Type</h6>
-                  </pre>
-                )}
-                {isWrongId === "false" && existId === "FAILURE" && (
-                  <pre>
-                    <h6 className="text-red-600">Can't find ID</h6>
-                  </pre>
-                )}
-              </div>
-            )}
-            {existId === "SUCCESS" && (
+            <div className="mt-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                ID
+              </label>
+              <input
+                onChange={handleUsername}
+                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                type="email"
+                required
+              />
+              {isWrongId === "true" && (
+                <pre>
+                  <h6 className="text-red-600">Wrong ID Type</h6>
+                </pre>
+              )}
+              {isWrongId === "false" && existId !== "FAILURE" && (
+                <pre>
+                  <h6 className="text-blue-600">Correct ID Type</h6>
+                </pre>
+              )}
+              {isWrongId === "false" && existId === "FAILURE" && (
+                <pre>
+                  <h6 className="text-red-600">Can't find ID</h6>
+                </pre>
+              )}
+            </div>
+            {
               <div className="mt-4 flex flex-col justify-between">
                 <div className="flex justify-between">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -120,6 +117,7 @@ export default function Home() {
                   </label>
                 </div>
                 <input
+                  ref = {passwordRef}
                   onChange={handlePassword}
                   className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
                   type="password"
@@ -146,24 +144,16 @@ export default function Home() {
                   Forget Password?
                 </a>
               </div>
-            )}
+            }
             <div className="mt-8">
-              {existId !== "SUCCESS" && (
-                <button
-                  onClick={handleUsernameButton}
-                  className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
-                >
-                  Check ID
-                </button>
-              )}
-              {existId === "SUCCESS" && (
+              {
                 <button
                   onClick={handleSubmit}
                   className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
                 >
                   Login
                 </button>
-              )}
+              }
             </div>
             <a
               href="#"

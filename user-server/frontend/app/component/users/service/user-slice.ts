@@ -10,7 +10,7 @@ const status = {
 
 interface IAuth{
     message?: string,
-    token?: string
+    accessToken?: string
 }
 
 interface userState{
@@ -23,10 +23,7 @@ interface userState{
 const initialState:userState = {
     array: [],
     json: {} as IUser,
-    auth: { 
-        message: "",
-        token: "",
-    },
+    auth: {} as IAuth, 
     exist: "",
 }
 

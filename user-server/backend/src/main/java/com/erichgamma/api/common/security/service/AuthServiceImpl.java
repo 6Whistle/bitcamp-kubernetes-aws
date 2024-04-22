@@ -23,7 +23,7 @@ public class AuthServiceImpl implements AuthService{
         .message(
             flag ? "SUCCESS" : "FAILURE"
         )
-        .token(flag ? createToken(userDto) : "")
+        .accessToken(flag ? createToken(userDto) : "")
         .build();
     }
 

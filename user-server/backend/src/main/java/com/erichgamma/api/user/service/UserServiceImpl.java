@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
-import com.erichgamma.api.common.component.JwtProvider;
 import com.erichgamma.api.common.component.MessengerVo;
+import com.erichgamma.api.common.component.security.JwtProvider;
 import com.erichgamma.api.user.model.User;
 import com.erichgamma.api.user.model.UserDto;
 import com.erichgamma.api.user.repository.UserRepository;
@@ -121,8 +121,8 @@ public class UserServiceImpl implements UserService {
         .filter(i -> i.getPassword().equals(userDto.getPassword()))
         .map(i -> List.of(i.getId(), jwtProvider.createToken(entityToDto(i))))
         .peek(i -> userRepository.modifyTokenById((Long)i.get(0), (String)i.get(1)))
-        .map(i -> MessengerVo.builder().message("SUCCESS").token((String)i.get(1)).build())
-        .findAny().orElseGet(() -> MessengerVo.builder().message("FAILURE").token("").build());
+        .map(i -> MessengerVo.builder().message("SUCCESS").accessToken((String)i.get(1)).build())
+        .findAny().orElseGet(() -> MessengerVo.builder().message("FAILURE").accessToken("").build());
     }
 
     @Override
@@ -137,6 +137,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MessengerVo existsByUsername(String username) {
+        log.info("result : {}", userRepository.existsByUsername(username));
         return MessengerVo.builder().message(userRepository.existsByUsername(username) ? "SUCCESS" : "FAILURE").build();
     }
 }

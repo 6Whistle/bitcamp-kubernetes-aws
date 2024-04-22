@@ -1,25 +1,51 @@
 'use client'
-import * as React from 'react';
-import { PG } from '@/app/component/common/enums/PG';
 import LinkButton, { linkButtonTitles } from '@/app/atoms/button/link-button';
 import Link from 'next/link';
-
-
-
+import { useEffect, useState } from 'react';
+import { destroyCookie, parseCookies } from 'nookies';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../users/service/user-service';
 
 function ResponsiveAppBar() {
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const [showProfile, setShowProfile] = useState(false)
+
+  useEffect(() => {
+    parseCookies().accessToken ? setShowProfile(true) : setShowProfile(false)
+  }, [parseCookies().accessToken])
+
+  const logoutHandler = () => {
+    console.log("Before Logout : ", parseCookies().accessToken)
+    dispatch(logout(parseCookies().accessToken))
+    .then((res:any) => {})
+    .catch((res:any) => {})
+    destroyCookie(null, 'message')
+    destroyCookie(null, 'accessToken')
+    setShowProfile(false)
+    router.push("/")
+  }
+
   return <nav className="bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <Link href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+  <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-      <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+      <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Home</span>
   </Link>
-  <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+  {showProfile &&
+          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+            <span className="block text-sm  text-gray-500 truncate dark:text-gray-400 mx-5">name@flowbite.com</span>
+            <span onClick={logoutHandler} className="block text-sm  text-gray-500 truncate dark:text-gray-400"> Sign out </span>
+          </div>
+  }
+  {/* { showProfile && <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <span className="sr-only">Open user menu</span>
-        <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/logo.svg" alt="user photo" />
+        <img className="w-8 h-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" alt="user photo" />
       </button>
-      <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+      <div className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
         <div className="px-4 py-3">
           <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
           <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
@@ -45,7 +71,7 @@ function ResponsiveAppBar() {
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
     </button>
-  </div>
+  </div>} */}
   <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       {linkButtonTitles.map(i => <LinkButton key = {i.id} id = {i.id} title={i.title} path={i.path} />)}

@@ -1,4 +1,4 @@
-import { instance } from "@/app/component/common/configs/axios-config"
+import { createInstance } from "@/app/component/common/configs/axios-config"
 import { API } from "@/app/component/common/enums/API"
 import { RQ } from "../../common/enums/RQ"
 import { IArticle } from "../model/article"
@@ -16,7 +16,7 @@ import { IArticle } from "../model/article"
 
 export const findArticleByIdAPI = async (id: number) => {
     try {
-        return (await instance.get(`${API.ARTICLE}${RQ.DETAIL}`, {
+        return (await createInstance().get(`${API.ARTICLE}${RQ.DETAIL}`, {
             params: {id}
         })).data
     } catch (error) {
@@ -27,7 +27,7 @@ export const findArticleByIdAPI = async (id: number) => {
 
 export const findArticlesCountAPI = async () => {
     try {
-        return (await instance.get(`${API.ARTICLE}${RQ.CNT}`)).data.message
+        return (await createInstance().get(`${API.ARTICLE}${RQ.CNT}`)).data.message
     } catch (error) {
         console.log(error)
         return error
@@ -36,7 +36,7 @@ export const findArticlesCountAPI = async () => {
 
 export const modifyArticleAPI = async (article: IArticle) => {
     try {
-        return (await instance.put(`${API.ARTICLE}${RQ.MOD}`, article)).data        
+        return (await createInstance().put(`${API.ARTICLE}${RQ.MOD}`, article)).data        
     } catch (error) {
         console.log(error)
         return error
@@ -45,7 +45,7 @@ export const modifyArticleAPI = async (article: IArticle) => {
 
 export const deleteArticleAPI = async (id: number) => {
     try {
-        return (await instance.delete(`${API.ARTICLE}${RQ.DEL}`, { params: {id} })).data        
+        return (await createInstance().delete(`${API.ARTICLE}${RQ.DEL}`, { params: {id} })).data        
     } catch (error) {
         console.log(error)
         return error
@@ -54,7 +54,7 @@ export const deleteArticleAPI = async (id: number) => {
 
 export const findArticlesByBoardIdAPI = async (page:number, id: number) => {
     try {
-        return (await instance.get(`${API.ARTICLE}${RQ.LIST}`, { params : {page, size: 10, limit: 10, id}})).data
+        return (await createInstance().get(`${API.ARTICLE}${RQ.LIST}`, { params : {page, size: 10, limit: 10, id}})).data
     } catch (error) {
         console.log(error)
         return error
@@ -63,7 +63,7 @@ export const findArticlesByBoardIdAPI = async (page:number, id: number) => {
 
 export const saveArticleAPI = async (article:IArticle) => {
     try {
-        return (await instance.post(`${API.ARTICLE}${RQ.SAVE}`, article)).data
+        return (await createInstance().post(`${API.ARTICLE}${RQ.SAVE}`, article)).data
     } catch (error) {
         console.log(error)
         return error
