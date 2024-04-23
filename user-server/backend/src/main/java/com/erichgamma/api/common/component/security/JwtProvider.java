@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.erichgamma.api.user.model.UserDto;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -46,14 +47,10 @@ public class JwtProvider {
 
     public String extractTokenFromHeader(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        return bearerToken != null && bearerToken.startsWith("Bearer ") ? bearerToken.substring(7) : "";
+        return bearerToken != null && bearerToken.startsWith("Bearer ") ? bearerToken.substring(7) : "undefined";
     }
 
-    public String getPayload(String token){
-        String[] chunks = token.split("\\.");
-        Base64.Decoder decoder = Base64.getDecoder();
-        String payload = new String(decoder.decode(chunks[1]));
-
-        return payload;
+    public Claims getPayload(String token){
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload();
     }
 }

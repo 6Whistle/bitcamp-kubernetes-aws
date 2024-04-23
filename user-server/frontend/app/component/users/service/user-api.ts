@@ -54,7 +54,7 @@ export const deleteUserAPI = async (id:number) => {
 
 export const loginAPI = async (user:IUser) => {
     try {
-        return (await createInstance().post(`${API.USER}/login`, user)).data
+        return (await createInstance().post(`${API.AUTH}/login`, user)).data
     } catch (error) {
         console.log(error)
         return error
@@ -63,7 +63,7 @@ export const loginAPI = async (user:IUser) => {
 
 export const existByUsernameAPI = async (username:string) => {
     try {
-        return (await createInstance().get(`${API.USER}/exist-username`, {params : {username}})).data.message
+        return (await createInstance().get(`${API.AUTH}/exist-username`, {params : {username}})).data.message
     } catch (error) {
         console.log(error)
         return error

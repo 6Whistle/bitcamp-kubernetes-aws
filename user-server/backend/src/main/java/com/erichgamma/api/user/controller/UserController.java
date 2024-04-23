@@ -57,12 +57,6 @@ public class UserController {
     // -------------------------- Query -------------------------- 
 
 
-    @PostMapping("/login")
-    public ResponseEntity<MessengerVo> login(@RequestBody UserDto userDto){
-        log.info("login request : {}", userDto);
-        return ResponseEntity.ok(userService.login(userDto));
-    }
-
     @GetMapping("/list")
     public ResponseEntity<List<UserDto>> findAll(Pageable pageable){
         log.info("findAll request : {}", pageable);
@@ -85,11 +79,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/exist-username")
-    public ResponseEntity<MessengerVo> existByUsername(@RequestParam("username") String username){
-        log.info("existByUsername request : {}", username);
-        return ResponseEntity.ok(userService.existsByUsername(username));
-    }
+
     
     // @PostMapping("/search")
     // public ResponseEntity<List<UserDto>> findUsersByName(@RequestParam("name") String job){

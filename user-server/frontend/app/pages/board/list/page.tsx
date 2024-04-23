@@ -23,7 +23,7 @@ export default function BoardCards(){
         const allBoards:IBoard[] = useSelector(getAllBoards)
 
         useEffect(() => {
-            dispatch(findAllBoards())
+            dispatch(findAllBoards(0))
         }, [])  
 
     return (

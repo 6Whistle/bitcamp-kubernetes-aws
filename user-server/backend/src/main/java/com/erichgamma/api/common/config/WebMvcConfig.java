@@ -15,8 +15,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private final AuthInterceptor authInterceptor;
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(@SuppressWarnings("null") InterceptorRegistry registry) {
         // registry.addInterceptor(new LocaleChangeInterceptor()).excludePathPatterns("/favicon.ico").addPathPatterns("/api/**");
-        registry.addInterceptor(authInterceptor).addPathPatterns("/api/**").excludePathPatterns("/favicon.ico");
+        registry
+        .addInterceptor(authInterceptor)
+        .addPathPatterns("/api/**")
+        .addPathPatterns("/api/auth/**")
+        .excludePathPatterns("/favicon.ico");
     }
 }
