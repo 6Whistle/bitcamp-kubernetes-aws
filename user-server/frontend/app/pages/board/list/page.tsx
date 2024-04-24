@@ -30,7 +30,7 @@ export default function BoardCards(){
 
     return (
         <ul className="flexcenter">
-            {allBoards && allBoards.map((board:IBoard, index) => <CardButton key={board.id} id={board.id} title={board.title} description={board.description} image={cards[index]}/>)}
+            {allBoards && allBoards.map((board:IBoard, index) => <CardButton key={board.id} id={board.id} title={board.title} content={board.content} description={board.description} image={cards[index]}/>)}
         </ul>
         )
 }

@@ -42,7 +42,7 @@ export default function NewArticlePage(){
 
     const submitHandler = () => {
       if(article.title && article.content && article.boardTitle){
-       dispatch(saveArticle({...article, writer: jwtDecode<any>(parseCookies().token)?.username}))
+       dispatch(saveArticle({...article, writer: jwtDecode<any>(parseCookies().accessToken)?.username}))
        router.push(`${PG.BOARD}${RQ.LIST}`)
      }
     }

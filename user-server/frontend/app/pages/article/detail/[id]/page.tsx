@@ -30,7 +30,7 @@ export default function ArticleDetailPage({params}:any){
     }
     const deleteArticleHandler = (e:any) => {
         dispatch(deleteArticle(params.id))
-        router.replace(`${PG.ARTICLE}${RQ.LIST}`)
+        router.replace(`${PG.BOARD}${RQ.LIST}`)
     }
 
     return (<div className="text-center">
@@ -39,7 +39,7 @@ export default function ArticleDetailPage({params}:any){
             <span className="text-base">Title : </span><Input className="text-base" placeholder={article.title} onChange={changeTitleHandler} /><br />
             <span className="text-base">Content : </span><Input className="text-base" placeholder={article.content} onChange={changeContentHandler} /><br />
             <p className="text-base">Register Date : {article.regDate}</p>
-            <p className="text-base">Register Date : {article.modDate}</p>
+            <p className="text-base">Modified Date : {article.modDate}</p>
             <Button onClick={modifyArticleHandler}>Update</Button>
             <Button onClick={deleteArticleHandler}>Delete</Button>
         </div>)

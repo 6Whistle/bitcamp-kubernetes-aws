@@ -22,8 +22,6 @@ function ResponsiveAppBar() {
     .then((res:any) => {
       destroyCookie(null, 'message', { path: "/" })
       destroyCookie(null, 'accessToken',  { path: "/" })
-
-      console.log(showProfile)
       setShowProfile(false)
       router.push("/")
     })
@@ -36,10 +34,10 @@ function ResponsiveAppBar() {
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Home</span>
   </Link>
   {showProfile &&
-          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-            <span className="block text-sm  text-gray-500 truncate dark:text-gray-400 mx-5">name@flowbite.com</span>
-            <span onClick={logoutHandler} className="block text-sm  text-gray-500 truncate dark:text-gray-400"> Sign out </span>
+          <div className="flex items-center md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
+              <span className="text-sm text-gray-900 dark:text-white">Junhwei Lee</span>
+              <span className="text-sm truncate text-gray-500 dark:text-gray-400">camjun0506@icloud.com</span>
+              <span onClick={logoutHandler} className="text-sm truncate text-gray-500 dark:text-gray-400"> Sign out </span>
           </div>
   }
   {/* { showProfile && <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

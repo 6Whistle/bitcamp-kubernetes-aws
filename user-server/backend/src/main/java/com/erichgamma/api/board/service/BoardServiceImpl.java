@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService{
         .message(
             Stream.of(boardDto)
             .filter(i -> !existsByTitle(i.getTitle()))
-            .peek(i -> boardRepository.save(Board.builder().title(i.getTitle()).description(i.getDescription()).build()))
+            .peek(i -> boardRepository.save(Board.builder().title(i.getTitle()).content(i.getContent()).description(i.getDescription()).build()))
             .map(i -> "SUCCESS")
             .findAny()
             .orElseGet(() -> "FAILURE")
@@ -38,6 +38,7 @@ public class BoardServiceImpl implements BoardService{
         .message(
             boardRepository.findById(boardDto.getId()).stream()
             .peek(i -> i.setTitle(boardDto.getTitle()))
+            .peek(i -> i.setContent(boardDto.getContent()))
             .peek(i -> i.setDescription(boardDto.getDescription()))
             .map(i -> boardRepository.save(i))
             .map(i -> "SUCCESS")

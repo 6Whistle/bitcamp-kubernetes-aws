@@ -145,12 +145,9 @@ public class UserServiceImpl implements UserService {
         .message(
             Stream.of(accessToken)
             .filter(i -> i.startsWith("Bearer "))
-            .map(i -> i.substring(7))
-            .map(i -> userRepository.findById(
-                jwtProvider.getPayload(i).get("userid", Long.class))
-                .orElseGet(User::new))
-            .filter(i -> i.getId() != null)
-            .peek(i -> userRepository.modifyTokenById(i.getId(), null))
+            .map(i -> jwtProvider.getPayload(i.substring(7)).get("userid", Long.class))
+            .filter(i -> userRepository.existsById(i))
+            .peek(i -> userRepository.modifyTokenById(i, null))
             .map(i -> "SUCCESS")
             .findAny()
             .orElseGet(() -> "FAILURE")

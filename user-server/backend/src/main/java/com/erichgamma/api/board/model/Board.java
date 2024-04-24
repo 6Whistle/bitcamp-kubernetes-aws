@@ -25,6 +25,8 @@ public class Board extends BaseEntity {
     private String title;
     @Setter
     private String description;
+    @Setter
+    private String content;
 
     @OneToMany(mappedBy = "board")
     private List<Article> articles;    
