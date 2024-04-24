@@ -3,6 +3,7 @@ package com.erichgamma.api.user.service;
 import java.util.List;
 import java.util.Optional;
 
+
 import com.erichgamma.api.common.command.CommandService;
 import com.erichgamma.api.common.component.MessengerVo;
 import com.erichgamma.api.common.query.QueryService;
@@ -34,10 +35,12 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
         .build();
     }
     
-    MessengerVo login(UserDto user);
+
     Optional<User> findUserByUsername(String username);
     List<UserDto> findUsersByName(String name);
     List<UserDto> findUsersByJob(String job);
 
     MessengerVo existsByUsername(String username);
+    MessengerVo login(UserDto user);
+    MessengerVo logout(String requestHeaders);
 }

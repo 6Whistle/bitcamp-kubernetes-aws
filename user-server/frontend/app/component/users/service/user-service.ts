@@ -16,4 +16,4 @@ export const login:any = createAsyncThunk('users/login', async (user:IUser) => a
 
 export const existByUsername:any = createAsyncThunk('users/existByUsername', async (username:string) => await existByUsernameAPI(username))
 
-export const logout:any = createAsyncThunk('users/logout', async (userToken:string) => await logoutAPI(userToken))
+export const logout:any = createAsyncThunk('users/logout', async () => await logoutAPI())

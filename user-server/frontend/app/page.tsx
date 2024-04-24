@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { IUser } from "./component/users/model/user";
 import { existByUsername, login } from "./component/users/service/user-service";
 import {
@@ -12,6 +11,8 @@ import {
 import { parseCookies, setCookie } from "nookies";
 import { PG } from "./component/common/enums/PG";
 import { RQ } from "./component/common/enums/RQ";
+import { useRouter } from "next/navigation";
+import Router from "next/router";
 
 export default function Home() {
   const router = useRouter();
@@ -56,7 +57,6 @@ export default function Home() {
         if(res.payload.message !== "SUCCESS")  return;
         setCookie({}, "message", res.payload.message, { httpOnly: false, path: "/" });
         setCookie({}, "accessToken", res.payload.accessToken, { httpOnly: false, path: "/" });
-
         console.log("server's message : " + parseCookies().message);
         console.log("server's accessToken : " + parseCookies().accessToken);
         router.push(`${PG.BOARD}${RQ.LIST}`);

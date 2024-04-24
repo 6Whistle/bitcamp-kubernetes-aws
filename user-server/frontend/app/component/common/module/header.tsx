@@ -1,7 +1,7 @@
 'use client'
 import LinkButton, { linkButtonTitles } from '@/app/atoms/button/link-button';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { destroyCookie, parseCookies } from 'nookies';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ import { logout } from '../../users/service/user-service';
 function ResponsiveAppBar() {
   const router = useRouter()
   const dispatch = useDispatch()
-  const [showProfile, setShowProfile] = useState(false)
+  const [showProfile, setShowProfile] = useState(parseCookies().accessToken ? true : false)
 
   useEffect(() => {
     parseCookies().accessToken ? setShowProfile(true) : setShowProfile(false)
@@ -18,13 +18,15 @@ function ResponsiveAppBar() {
 
   const logoutHandler = () => {
     console.log("Before Logout : ", parseCookies().accessToken)
-    dispatch(logout(parseCookies().accessToken))
-    .then((res:any) => {})
-    .catch((res:any) => {})
-    destroyCookie(null, 'message')
-    destroyCookie(null, 'accessToken')
-    setShowProfile(false)
-    router.push("/")
+    dispatch(logout())
+    .then((res:any) => {
+      destroyCookie(null, 'message', { path: "/" })
+      destroyCookie(null, 'accessToken',  { path: "/" })
+
+      console.log(showProfile)
+      setShowProfile(false)
+      router.push("/")
+    })
   }
 
   return <nav className="bg-white border-gray-200 dark:bg-gray-900">

@@ -5,9 +5,6 @@ import { createInstance } from "../../common/configs/axios-config"
 
 export const findAllUsersAPI = async (page:number) => {
     try {
-        console.log((await createInstance().get(`${API.USER}${RQ.LIST}`, {
-            params: {page, size: 10, limit: 10}
-        })))
         return <IUser[]>(await createInstance().get(`${API.USER}${RQ.LIST}`, {
             params: {page, size: 10, limit: 10}
         })).data
@@ -63,6 +60,7 @@ export const loginAPI = async (user:IUser) => {
 
 export const existByUsernameAPI = async (username:string) => {
     try {
+        console.log((await createInstance().get(`${API.AUTH}/exist-username`, {params : {username}})))
         return (await createInstance().get(`${API.AUTH}/exist-username`, {params : {username}})).data.message
     } catch (error) {
         console.log(error)
@@ -70,9 +68,9 @@ export const existByUsernameAPI = async (username:string) => {
     }
 } 
 
-export const logoutAPI = async (accessToken:string) => {
+export const logoutAPI = async () => {
     try {
-        return (await createInstance().post(`${API.USER}/logout`, accessToken)).data.message
+        return (await createInstance().get(`${API.USER}/logout`)).data.message
     } catch (error) {
         console.log(error)
         return error

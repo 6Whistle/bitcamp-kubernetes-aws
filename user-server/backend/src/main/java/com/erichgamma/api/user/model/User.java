@@ -37,6 +37,7 @@ public class User extends BaseEntity {
     private String phone;
     @Setter
     private String job;
+    @Setter
     private String token;
 }
 

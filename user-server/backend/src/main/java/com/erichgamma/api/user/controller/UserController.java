@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,13 @@ public class UserController {
 
     // -------------------------- Query -------------------------- 
 
+    @GetMapping("/logout")
+    public ResponseEntity<MessengerVo> logout(@RequestHeader("Authorization") String accessToken){
+        log.info("logout request : {}", accessToken);
+        return ResponseEntity.ok(
+            userService.logout(accessToken)
+        );
+    }
 
     @GetMapping("/list")
     public ResponseEntity<List<UserDto>> findAll(Pageable pageable){
@@ -78,7 +86,6 @@ public class UserController {
             .build()
         );
     }
-
 
     
     // @PostMapping("/search")

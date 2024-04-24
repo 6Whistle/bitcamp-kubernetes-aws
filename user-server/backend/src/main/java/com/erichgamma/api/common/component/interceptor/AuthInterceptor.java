@@ -1,6 +1,5 @@
 package com.erichgamma.api.common.component.interceptor;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.lang.Nullable;
@@ -10,7 +9,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.erichgamma.api.common.component.security.JwtProvider;
-import com.erichgamma.api.user.model.User;
 import com.erichgamma.api.user.repository.UserRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,12 +26,11 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         return Stream.of(request)
-        .map(i -> jwtProvider.extractTokenFromHeader(i))
+        .map(jwtProvider::extractTokenFromHeader)
         .filter(i -> !i.equals("undefined"))
-        .map(i -> List.of(i, jwtProvider.getPayload(i).get("userid", Long.class)))
-        .filter(i -> i.get(0).equals(userRepository.findById((Long)i.get(1)).orElseGet(User::new).getToken()))
-        .map(i -> true).findAny()
-        .orElseGet(() -> false);
+        .map(i -> jwtProvider.getPayload(i).get("userid", Long.class))
+        .filter(userRepository::existsById)
+        .findAny().isPresent();    
     }
 
     @SuppressWarnings("null")

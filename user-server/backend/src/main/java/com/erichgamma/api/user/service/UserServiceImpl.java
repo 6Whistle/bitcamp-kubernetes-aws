@@ -1,6 +1,5 @@
 package com.erichgamma.api.user.service;
 
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -15,9 +14,8 @@ import com.erichgamma.api.user.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+// @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -137,7 +135,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MessengerVo existsByUsername(String username) {
-        log.info("result : {}", userRepository.existsByUsername(username));
         return MessengerVo.builder().message(userRepository.existsByUsername(username) ? "SUCCESS" : "FAILURE").build();
+    }
+
+    @Transactional
+    @Override
+    public MessengerVo logout(String accessToken) {    
+        return MessengerVo.builder()
+        .message(
+            Stream.of(accessToken)
+            .filter(i -> i.startsWith("Bearer "))
+            .map(i -> i.substring(7))
+            .map(i -> userRepository.findById(
+                jwtProvider.getPayload(i).get("userid", Long.class))
+                .orElseGet(User::new))
+            .filter(i -> i.getId() != null)
+            .peek(i -> userRepository.modifyTokenById(i.getId(), null))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 }
