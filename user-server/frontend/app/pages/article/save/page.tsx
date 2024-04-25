@@ -17,56 +17,49 @@ import { parseCookies } from "nookies"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
+import { useForm } from "react-hook-form"
 
 export default function NewArticlePage(){
     const router = useRouter();
     const dispatch = useDispatch()
     const boards:IBoard[] = useSelector(getAllBoards)
-    const [article, setArticle ] = useState({} as IArticle)
-
-    const insertTitleHandler = ({target}:any) => {
-      setArticle({...article, title : target.value})
-    }
-
-    const insertContentHandler = ({target}:any) => {
-      setArticle({...article, content : target.value})
-    }
-
-    const changeBoardTitleHandler = ({target}:any) => {
-      setArticle({...article, boardTitle : target.value})
-    }
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
 
     const cancelHandler = () => {
       router.push(`${PG.BOARD}${RQ.LIST}`)
     }
 
-    const submitHandler = () => {
-      if(article.title && article.content && article.boardTitle){
-       dispatch(saveArticle({...article, writer: jwtDecode<any>(parseCookies().accessToken)?.username}))
-       router.push(`${PG.BOARD}${RQ.LIST}`)
-     }
-    }
+    // const submitHandler = () => {
+    //   if(article.title && article.content && article.boardTitle){
+    //    dispatch(saveArticle({...article, writer: jwtDecode<any>(parseCookies().accessToken)?.username}))
+    //    router.push(`${PG.BOARD}${RQ.LIST}`)
+    //  }
+    // }
+
+    const onSubmit = (data:any) => 
+      dispatch(saveArticle(data))
+      .then((res:any) => 
+        res.payload.message === "SUCCESS" ? 
+        router.push(`${PG.ARTICLE}${RQ.LIST}/${boards.find((board) => board.title === data.boardTitle)?.id}`) : 
+        alert("Failed To Save Article")
+      )
+    
 
     useEffect(() => {
+        setValue("writer", jwtDecode<any>(parseCookies().accessToken)?.username)
         dispatch(findAllBoards())
-        dispatch(clearHandler())
     }, [])
 
-    useEffect(() => {
-      setArticle({...article, boardTitle : boards[0]?.title})
-    }, [boards])
-
-    return <>
-        <form className="max-w-sm mx-auto">
-  <label htmlFor="boardTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Board</label>
-  <select id="boardTitle" onChange={changeBoardTitleHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    {boards && boards.map(board => <option key={board.id} value={board.title}>{board.title?.toUpperCase()}</option>)}
+    return <form className="max-w-2xl mx-auto" onSubmit={handleSubmit(onSubmit)}>
+  <label htmlFor="boardTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-center">Select Board</label>
+  <select id="boardTitle" defaultValue={boards && boards[0]?.title} {...register("boardTitle", {required: true, maxLength: 50})} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 margincenter">
+    {boards && boards.map(board => <option className="font-bold text-justify" key={board.id} value={board.title}>{board.title?.toUpperCase()}</option>)}
   </select>
-</form>
+  <br />
     <div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
       {MyTypography('Article 작성', "1.5rem")}
-      <input className="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" placeholder="Title" type="text" name="title" onChange={insertTitleHandler} />
-      <textarea className="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" placeholder="Describe everything about this post here" name="content" onChange={insertContentHandler}></textarea>
+      <input className="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" placeholder="Title" type="text" {...register("title", { required: true, maxLength: 320})}/>
+      <textarea className="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" placeholder="Describe everything about this post here" {...register("content", { required: true })} />
       {/* <!-- icons --> */}
       <div className="icons flex text-gray-500 m-2">
         <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,10 +78,10 @@ export default function NewArticlePage(){
         <div className="btn  overflow-hidden relative w-30 bg-white text-blue-500 p-3 px-4 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full
         before:bg-pink-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-200 hover:before:animate-ping transition-all duration-00"
           onClick={cancelHandler}>Cancel</div>
-        <div className="btn  overflow-hidden relative w-30 bg-blue-500 text-white p-3 px-8 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full
+        <input className="btn  overflow-hidden relative w-30 bg-blue-500 text-white p-3 px-8 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full
         before:bg-pink-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-200 hover:before:animate-ping transition-all duration-00"
-          onClick={submitHandler}> Post </div>
+          type="submit" value="Post" />
       </div>
     </div>
-    </>
+    </form>
 }

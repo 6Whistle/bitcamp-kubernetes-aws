@@ -26,7 +26,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long>{
                     "(SELECT b.title FROM boards b WHERE b.id = :boardId), " + 
                 "a.regLocalDateTime, a.modLocalDateTime) " +
         "FROM articles a " +
-        "WHERE a.board.id = :boardId ORDER BY a.regLocalDateTime DESC"
+        "WHERE a.board.id = :boardId ORDER BY a.id DESC"
     )
     List<ArticleDto> getArticleDtosByBoardId(@Param("boardId") Long boardId);
+
+    List<Article> findAllByOrderByIdDesc();
 }

@@ -6,6 +6,9 @@ import { destroyCookie, parseCookies } from 'nookies';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../users/service/user-service';
+import { jwtDecode } from 'jwt-decode';
+import { PG } from '../enums/PG';
+import { RQ } from '../enums/RQ';
 
 function ResponsiveAppBar() {
   const router = useRouter()
@@ -35,9 +38,9 @@ function ResponsiveAppBar() {
   </Link>
   {showProfile &&
           <div className="flex items-center md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
-              <span className="text-sm text-gray-900 dark:text-white">Junhwei Lee</span>
+              <Link className="text-sm text-gray-900 dark:text-white" href={`${PG.USER}${RQ.DETAIL}/${jwtDecode<any>(parseCookies().accessToken)?.userid}`}>{jwtDecode<any>(parseCookies().accessToken)?.username}</Link>
               <span className="text-sm truncate text-gray-500 dark:text-gray-400">camjun0506@icloud.com</span>
-              <span onClick={logoutHandler} className="text-sm truncate text-gray-500 dark:text-gray-400"> Sign out </span>
+              <button onClick={logoutHandler} className="text-sm truncate text-white dark:text-gray-400 bg-gray-400 px-1 py-0.5 rounded-md"> Sign out </button>
           </div>
   }
   {/* { showProfile && <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

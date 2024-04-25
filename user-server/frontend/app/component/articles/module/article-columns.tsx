@@ -1,15 +1,17 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { IArticle } from "../model/article";
 import MyTypography from "../../common/style/cell";
-import Link from "next/link";
 import { PG } from "../../common/enums/PG";
 import { RQ } from "../../common/enums/RQ";
+import { useDispatch } from "react-redux";
+import { deleteBoard } from "../../boards/service/board-service";
+import Link from "next/link";
 
 interface CellType{
     row: IArticle,
 }
 
-export default function ArticleColumns(): GridColDef[]{
+export default function ArticleColumns(boardId:number): GridColDef[]{
     return [
         {
             flex: 0.04,
@@ -27,7 +29,7 @@ export default function ArticleColumns(): GridColDef[]{
         },
         { 
             flex: 0.04,
-            field: 'med',
+            field: 'content',
             minWidth: 30,
             headerName: "Content", 
             renderCell: ({row}: CellType) => MyTypography(row.content, "1rem")
@@ -59,6 +61,13 @@ export default function ArticleColumns(): GridColDef[]{
             minWidth: 30,
             headerName: "Modified Date", 
             renderCell: ({row}: CellType) => MyTypography(row.modDate, "1rem")
-        }
+        },
+        { 
+            flex: 0.04,
+            field: 'delete',
+            minWidth: 30,
+            headerName: "Delete", 
+            renderCell: ({row}: CellType) => <Link href={`${PG.ARTICLE}${RQ.LIST}/${boardId}`}>{MyTypography("Delete", "1rem")}</Link>
+        },
     ]
 }

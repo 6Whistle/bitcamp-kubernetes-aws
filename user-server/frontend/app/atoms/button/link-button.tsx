@@ -12,8 +12,7 @@ export const linkButtonTitles:ILinkButton[] = [
     {id: 2, title: 'join', path: `${PG.USER}/join`}, 
     {id: 3, title: 'counter-redux', path: `${PG.DEMO}/redux-counter`}, 
     {id: 4, title: 'articles', path: `${PG.ARTICLE}/list`}, 
-    {id: 5, title: 'users', path: `${PG.USER}/list`}, 
-    {id: 6, title: 'board', path: `${PG.BOARD}/list`}];
+    {id: 5, title: 'board', path: `${PG.BOARD}/list`}];
 
 export default function LinkButton({id, title, path} : ILinkButton){
     return <li key = {id}>
