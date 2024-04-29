@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController  //controller + ResponseBody
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/players/")
+@RequestMapping(path = "/api/player/")
 @Slf4j
 public class PlayerController {
 }
