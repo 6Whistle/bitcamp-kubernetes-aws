@@ -21,7 +21,6 @@ public class TeamDto {
     private String teamName;
     private String eTeamName;
     private String origYyyy;
-    private String stadiumId;
     private String zipCode1;
     private String zipCode2;
     private String address;

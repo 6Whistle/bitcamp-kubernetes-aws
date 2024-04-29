@@ -1,5 +1,10 @@
 package com.erichgamma.api.stadium.model;
 
+import java.util.List;
+
+import com.erichgamma.api.schedule.model.Schedule;
+import com.erichgamma.api.team.model.Team;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,4 +27,10 @@ public class Stadium {
     private String address;
     private String ddd;
     private String tel;
+
+    @OneToMany(mappedBy = "teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Team> teams;
+
+    @OneToMany(mappedBy = "stadiumId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Schedule> schedules;
 }

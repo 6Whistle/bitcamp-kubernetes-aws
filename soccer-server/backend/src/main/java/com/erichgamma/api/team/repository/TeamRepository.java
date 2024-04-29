@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.erichgamma.api.team.model.Team;
 
 @Repository
-public interface TeamRepository extends JpaRepository<Team, String>{
+public interface TeamRepository extends JpaRepository<Team, Long>{
     
 }

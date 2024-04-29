@@ -15,4 +15,11 @@ import org.springframework.stereotype.Component;
 @Log4j2
 @Builder
 public class ScheduleDto {
+    private Long id;
+    private String scheDate;
+    private String gubun;
+    private String homeTeamId;
+    private String awayTeamId;
+    private Integer homeScore;
+    private Integer awayScore;
 }

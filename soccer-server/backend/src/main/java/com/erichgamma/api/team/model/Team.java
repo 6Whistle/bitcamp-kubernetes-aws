@@ -1,10 +1,20 @@
 package com.erichgamma.api.team.model;
 
+import java.util.List;
+
+import com.erichgamma.api.player.model.Player;
+import com.erichgamma.api.stadium.model.Stadium;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +35,6 @@ public class Team {
     private String teamName;
     private String eTeamName;
     private String origYyyy;
-    private String stadiumId;
     private String zipCode1;
     private String zipCode2;
     private String address;
@@ -35,5 +44,10 @@ public class Team {
     private String homepage;
     private String owner;
 
-    //FK teamFk
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stadium_id", nullable = true)
+    private Stadium stadiumId;
+
+    @OneToMany(mappedBy = "teamId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Player> players;
 }

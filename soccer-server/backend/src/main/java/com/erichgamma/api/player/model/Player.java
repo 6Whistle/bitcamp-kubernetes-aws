@@ -1,5 +1,7 @@
 package com.erichgamma.api.player.model;
 
+import com.erichgamma.api.team.model.Team;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,10 +14,9 @@ import lombok.*;
 public class Player {
     @Id
     @Column(name ="id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String teamId;
     private String ePlayerName;
     private String nickname;
     private String joinYyyy ;
@@ -26,7 +27,8 @@ public class Player {
     private String solar ;
     private String height ;
     private String weight ;
-//    CONSTRAINT player_pk PRIMARY KEY (player_id),
-//    CONSTRAINT player_fk FOREIGN KEY (team_id) REFERENCES team(team_id)
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = true)
+    private Team teamId;
 }

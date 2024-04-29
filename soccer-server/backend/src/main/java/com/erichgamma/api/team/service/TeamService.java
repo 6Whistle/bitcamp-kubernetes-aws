@@ -13,7 +13,6 @@ public interface TeamService extends CommandService<TeamDto>, QueryService<TeamD
         .regionName(entity.getRegionName())
         .teamName(entity.getTeamName())
         .origYyyy(entity.getOrigYyyy())
-        .stadiumId(entity.getStadiumId())
         .zipCode1(entity.getZipCode1())
         .zipCode2(entity.getZipCode2())
         .address(entity.getAddress())

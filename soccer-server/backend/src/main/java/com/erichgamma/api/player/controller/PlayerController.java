@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.erichgamma.api.player.service.PlayerService;
+
 @ApiResponses(value = {
-        @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-        @ApiResponse(responseCode = "404", description = "Customer not found")})
+    @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
+    @ApiResponse(responseCode = "404", description = "Customer not found")})
 @RestController  //controller + ResponseBody
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/player/")
 @Slf4j
 public class PlayerController {
+    private final PlayerService playerService;
 }

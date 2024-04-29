@@ -1,8 +1,10 @@
 package com.erichgamma.api.schedule.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+import com.erichgamma.api.schedule.model.Schedule;
 
-public interface ScheduleRepository {
+@Repository
+public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 }
