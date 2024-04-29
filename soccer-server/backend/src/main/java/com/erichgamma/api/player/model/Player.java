@@ -15,14 +15,14 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String team_id;
-    private String e_player_name;
+    private String teamId;
+    private String ePlayerName;
     private String nickname;
-    private String join_yyyy ;
-    private String POSITION ;
-    private String back_no ;
+    private String joinYyyy ;
+    private String position ;
+    private String backNo ;
     private String nation ;
-    private String birth_date ;
+    private String birthDate ;
     private String solar ;
     private String height ;
     private String weight ;
