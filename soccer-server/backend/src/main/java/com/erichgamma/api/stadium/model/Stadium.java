@@ -17,7 +17,7 @@ public class Stadium {
     private Long id;
     private String stadiumId;
     private String stadiumName;
-    private String homeTeamId;
+    private String hometeamId;
     private Integer seatCount;
     private String address;
     private String ddd;
