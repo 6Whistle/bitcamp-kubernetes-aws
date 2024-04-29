@@ -8,7 +8,7 @@ services:
       - ~/docker/mysql/demo/var/lib/mysql:/var/lib/mysql
       - ~/docker/mysql/demo/var/log/mysql:/var/log/mysql
     environment:
-      - MYSQL_DATABASE=erichgammadb
+      - MYSQL_DATABASE=soccerdb
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_ROOT_HOST=%
