@@ -18,7 +18,7 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String scheDate;
-    private String guBun;
+    private String gubun;
     private String homeTeamId;
     private String awayTeamId;
     private int homeScore;
