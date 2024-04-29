@@ -1,6 +1,5 @@
 package com.erichgamma.api.stadium.model;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,10 +15,10 @@ public class Stadium {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String stadium_id;
-    private String stadium_name;
-    private String hometeam_id;
-    private Integer seat_count;
+    private String stadiumId;
+    private String stadiumName;
+    private String homeTeamId;
+    private Integer seatCount;
     private String address;
     private String ddd;
     private String tel;
