@@ -3,7 +3,7 @@ package com.erichgamma.api.player.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "player")
+@Entity(name = "players")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
