@@ -21,8 +21,8 @@ public class Schedule {
     private Long id;
     private String scheDate;
     private String gubun;
-    private String homeTeamId;
-    private String awayTeamId;
+    private String hometeamId;
+    private String awayteamId;
     private Integer homeScore;
     private Integer awayScore;
 
