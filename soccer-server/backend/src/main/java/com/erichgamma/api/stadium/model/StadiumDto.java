@@ -4,7 +4,7 @@ public class StadiumDto {
     private Long id;
     private String stadiumId;
     private String stadiumName;
-    private String hometeamId;
+    private String homeTeamId;
     private Integer seatCount;
     private String address;
     private String ddd;
