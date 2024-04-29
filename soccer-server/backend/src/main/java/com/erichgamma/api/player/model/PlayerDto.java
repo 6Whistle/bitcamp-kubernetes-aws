@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Log4j2
 public class PlayerDto {
     private Long id;
+    private String playerId;
     private String name;
     private String teamId;
     private String playerName;
