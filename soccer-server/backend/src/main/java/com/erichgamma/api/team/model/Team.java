@@ -33,8 +33,6 @@ public class Team {
     private String tel;
     private String fax;
     private String homepage;
-
-    @Column(name = "OWNER")
     private String owner;
 
     //FK teamFk
