@@ -1,5 +1,9 @@
 package com.erichgamma.api.team.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +18,28 @@ import lombok.RequiredArgsConstructor;
 })
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/team")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api")
 public class TeamController {
     private final TeamService teamService;
+
+    @GetMapping("/1")
+    public List<?> getTeams(){
+        return teamService.getTeams();
+    }
+
+    @GetMapping("/12")
+    public List<?> getSuwonDeojeonByHight(){
+        return teamService.getSuwonDeojeonByHeight();
+    }
+
+    @GetMapping("/13")
+    public List<?> getNotSelectedPostion(){
+        return teamService.getNotSelectedPostion();
+    } 
+
+    @GetMapping("/19")
+    public List<?> getIncheonByHeight(){
+        return teamService.getIncheonByHeight();
+    }
 }

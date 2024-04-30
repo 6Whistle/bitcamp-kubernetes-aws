@@ -1,5 +1,7 @@
 package com.erichgamma.api.team.service;
 
+import java.util.List;
+
 import com.erichgamma.api.common.command.CommandService;
 import com.erichgamma.api.common.query.QueryService;
 import com.erichgamma.api.team.model.Team;
@@ -21,6 +23,15 @@ public interface TeamService extends CommandService<TeamDto>, QueryService<TeamD
         .fax(entity.getFax())
         .homepage(entity.getHomepage())
         .owner(entity.getOwner())
+        .stadiumId(entity.getStadiumId().getStadiumId())
         .build();
     }
+
+    List<?> getTeams();
+
+    List<?> getNotSelectedPostion();
+
+    List<?> getSuwonDeojeonByHeight();
+
+    List<?> getIncheonByHeight();
 }

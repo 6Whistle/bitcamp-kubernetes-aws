@@ -69,4 +69,28 @@ public class TeamServiceImpl implements TeamService {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'existsById'");
     }
+
+    @Override
+    public List<?> getTeams() {
+        return teamRepository.getTeamOrderByTeamName();
+    }
+
+    @Override
+    public List<?> getNotSelectedPostion() {
+        return teamRepository.getNotSelectedPostion();
+    }
+
+    @Override
+    public List<?> getSuwonDeojeonByHeight() {
+        return teamRepository.getSuwonDeojeonByHeight().stream()
+        .filter(i -> Integer.parseInt(i.getHeight()) >= 180 && Integer.parseInt(i.getHeight()) <= 180)
+        .toList();
+    }
+
+    @Override
+    public List<?> getIncheonByHeight() {
+        return teamRepository.getIncheonByHeight().stream()
+        .filter(i -> (Double)(i.get("평균")) < 176.59)
+        .toList();
+    }
 }

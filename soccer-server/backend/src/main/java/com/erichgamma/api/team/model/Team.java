@@ -5,7 +5,6 @@ import java.util.List;
 import com.erichgamma.api.player.model.Player;
 import com.erichgamma.api.stadium.model.Stadium;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
@@ -22,7 +21,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "team")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
