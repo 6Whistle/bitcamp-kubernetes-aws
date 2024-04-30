@@ -1,11 +1,13 @@
 package com.erichgamma.api.schedule.Service;
 
 import com.erichgamma.api.common.component.MessengerVo;
+import com.erichgamma.api.schedule.model.Schedule;
 import com.erichgamma.api.schedule.model.ScheduleDto;
 import com.erichgamma.api.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -69,5 +71,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Boolean existsById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+    }
+
+
+    @Override
+    public List<String> findStadiumNamesByDateRange(String startDate, String endDate) {
+        return scheduleRepository.findStadiumNamesByDateRange("20120501", "20120531");
     }
 }
