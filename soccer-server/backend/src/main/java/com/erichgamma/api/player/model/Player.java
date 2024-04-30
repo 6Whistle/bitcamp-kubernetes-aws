@@ -2,6 +2,7 @@ package com.erichgamma.api.player.model;
 
 import com.erichgamma.api.team.model.Team;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

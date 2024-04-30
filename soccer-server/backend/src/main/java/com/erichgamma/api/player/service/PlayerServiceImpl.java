@@ -69,4 +69,93 @@ public class PlayerServiceImpl implements PlayerService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'existsById'");
     }
+
+
+    @Override
+    public List<?> getOnPosition() {
+        return playerRepository.getOnPosition();
+    }
+
+    @Override
+    public List<PlayerDto> getOnPositionNotNull() {
+        return null;
+    }
+
+    @Override
+    public List<PlayerDto> getOnPositionAndTeamId() {
+        return null;
+    }
+
+    @Override
+    public List<PlayerDto> getOnPositionAndTeamId7() {
+        return null;
+    }
+
+    @Override
+    public List<PlayerDto> getOnHeightAndWeight() {
+        return null;
+    }
+
+    @Override
+    public List<PlayerDto> getOnPositionAndTeamId10() {
+        return null;
+    }
+
+    @Override
+    public Long getOnCount() {
+        return null;
+    }
+
+    @Override
+    public List<PlayerDto> getOnPositionAndTeamId20() {
+        return null;
+    }
+
+    @Override
+    public List<PlayerDto> getOnPositionAndTeamId21() {
+        return null;
+    }
+
+//    @Override
+//    public List<PlayerDto> getOnPositionNotNull() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionNotNull();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId7() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId7();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnHeightAndWeight() {
+//        return (List<PlayerDto>) playerRepository.getOnHeightAndWeight();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId10() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId10();
+//    }
+//
+//    @Override
+//    public Long getOnCount() {
+//        return  playerRepository.getOnCount();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId20() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId20();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId21() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId21();
+//    }
 }
+
+
+
