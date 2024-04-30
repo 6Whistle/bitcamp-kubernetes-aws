@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class StadiumServiceImpl implements StadiumService {
@@ -68,5 +69,30 @@ public class StadiumServiceImpl implements StadiumService {
     public Boolean existsById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+    }
+
+    @Override
+    public List<?> stadiumNameWithTeam() {
+        return stadiumRepository.stadiumNameWithTeam();
+    }
+
+    @Override
+    public List<?> stadiumAndTeamAndSchedule() {
+        return stadiumRepository.stadiumAndTeamAndSchedule();
+    }
+
+    @Override
+    public List<?> pohangSteelersGk() {
+        return stadiumRepository.pohangSteelersGk();
+    }
+
+    @Override
+    public List<?> homeTeamWin() {
+        return stadiumRepository.homeTeamWin();
+    }
+
+    @Override
+    public List<?> noHomeTeam() {
+        return stadiumRepository.noHomeTeam();
     }
 }

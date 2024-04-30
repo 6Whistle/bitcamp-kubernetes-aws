@@ -16,6 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class TeamDto {
     private Long id;
+    private String stadiumId;
     private String teamId;
     private String regionName;
     private String teamName;
