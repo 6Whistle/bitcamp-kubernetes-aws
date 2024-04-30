@@ -1,23 +1,19 @@
 package com.erichgamma.api.player.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
+@Data
 @Component
+@ToString
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Builder
-@Log4j2
 public class PlayerDto {
     private Long id;
     private String playerId;
     private String name;
-    private String teamId;
     private String playerName;
     private String ePlayerName;
     private String nickname;
