@@ -10,21 +10,21 @@ import java.util.List;
 public interface PlayerService extends CommandService<PlayerDto>, QueryService<PlayerDto> {
     List<?> getOnPosition();
 
-    List<PlayerDto> getOnPositionNotNull();
+    List<?> getOnPositionNotNull();
 
-    List<PlayerDto> getOnPositionAndTeamId();
+    List<?> getOnPositionAndTeamId();
 
-    List<PlayerDto> getOnPositionAndTeamId7();
+    List<?> getOnPositionAndTeamId7();
 
-    List<PlayerDto> getOnHeightAndWeight();
+    List<?> getOnHeightAndWeight();
 
-    List<PlayerDto> getOnPositionAndTeamId10();
+    List<?> getOnPositionAndTeamId10();
 
-    Long getOnCount();
+    List<?> getOnCountAll();
 
-    List<PlayerDto> getOnPositionAndTeamId20();
+    List<?> getOnPositionAndTeamId20();
 
-    List<PlayerDto> getOnPositionAndTeamId21();
+    List<?> getOnPositionAndTeamId21();
 
 
 //    default Player dtoToEntity(PlayerDto dto){

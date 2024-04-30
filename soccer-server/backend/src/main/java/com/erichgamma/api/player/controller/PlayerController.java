@@ -22,54 +22,54 @@ import java.util.Optional;
 @RestController  //controller + ResponseBody
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/player/")
+@RequestMapping(path = "/api/")
 @Slf4j
 public class PlayerController {
     private final PlayerService playerService;
 
 
-    @GetMapping("/soccer/2")
+    @GetMapping("2")
     public ResponseEntity<List<?>> getOnPosition() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPosition());
 
     }
 
-    @GetMapping("/soccer/3")
-    public ResponseEntity<List<PlayerDto>> getOnPositionNotNull() throws SQLException {
+    @GetMapping("/3")
+    public ResponseEntity<List<?>> getOnPositionNotNull() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPositionNotNull());
     }
 
-    @GetMapping("/soccer/4")
-    public ResponseEntity<List<PlayerDto>> getOnPositionAndTeamId() throws SQLException {
+    @GetMapping("/4")
+    public ResponseEntity<List<?>> getOnPositionAndTeamId() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPositionAndTeamId());
     }
 
-    @GetMapping("/soccer/8")
-    public ResponseEntity<List<PlayerDto>> getOnPositionAndTeamId7() throws SQLException {
+    @GetMapping("/8")
+    public ResponseEntity<List<?>> getOnPositionAndTeamId7() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPositionAndTeamId7());
     }
 
-    @GetMapping("/soccer/9")
-    public ResponseEntity<List<PlayerDto>> getOnHeightAndWeight() throws SQLException {
+    @GetMapping("/9")
+    public ResponseEntity<List<?>> getOnHeightAndWeight() throws SQLException {
         return ResponseEntity.ok(playerService.getOnHeightAndWeight());
     }
 
-    @GetMapping("/soccer/10")
-    public ResponseEntity<List<PlayerDto>> getOnPositionAndTeamId10() throws SQLException {
+    @GetMapping("/10")
+    public ResponseEntity<List<?>> getOnPositionAndTeamId10() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPositionAndTeamId10());
     }
 
-    @GetMapping("/soccer/18")
-    public ResponseEntity<Long> getOnCount() throws SQLException {
-        return ResponseEntity.ok(playerService.getOnCount());
+    @GetMapping("/18")
+    public ResponseEntity<List<?>> getOnCountAll() throws SQLException {
+        return ResponseEntity.ok(playerService.getOnCountAll());
     }
 
-    @GetMapping("/soccer/20")
-    public ResponseEntity<List<PlayerDto>> getOnPositionAndTeamId20() throws SQLException {
+    @GetMapping("/20")
+    public ResponseEntity<List<?>> getOnPositionAndTeamId20() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPositionAndTeamId20());
     }
-    @GetMapping("/soccer/21")
-    public ResponseEntity<List<PlayerDto>> getOnPositionAndTeamId21() throws SQLException {
+    @GetMapping("/21")
+    public ResponseEntity<List<?>> getOnPositionAndTeamId21() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPositionAndTeamId21());
     }
 
