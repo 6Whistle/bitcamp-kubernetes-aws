@@ -1,11 +1,8 @@
 package com.erichgamma.api.player.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import com.erichgamma.api.player.model.Player;
 import org.springframework.stereotype.Service;
 
 import com.erichgamma.api.common.component.MessengerVo;
@@ -74,57 +71,91 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
 
-
     @Override
-    public List<PlayerDto> getOnPosition() {
-        return (List<PlayerDto>) playerRepository.getOnPosition();
-
+    public List<?> getOnPosition() {
+        return playerRepository.getOnPosition();
     }
 
     @Override
     public List<PlayerDto> getOnPositionNotNull() {
-        return (List<PlayerDto>) playerRepository.getOnPositionNotNull();
+        return null;
     }
 
     @Override
     public List<PlayerDto> getOnPositionAndTeamId() {
-        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId();
+        return null;
     }
 
     @Override
     public List<PlayerDto> getOnPositionAndTeamId7() {
-        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId7();
+        return null;
     }
 
     @Override
     public List<PlayerDto> getOnHeightAndWeight() {
-        return (List<PlayerDto>) playerRepository.getOnHeightAndWeight();
+        return null;
     }
 
     @Override
     public List<PlayerDto> getOnPositionAndTeamId10() {
-        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId10();
+        return null;
     }
 
     @Override
     public Long getOnCount() {
-        return playerRepository.getOnCount();
+        return null;
     }
 
     @Override
     public List<PlayerDto> getOnPositionAndTeamId20() {
-        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId20();
+        return null;
     }
 
     @Override
     public List<PlayerDto> getOnPositionAndTeamId21() {
-        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId21();
+        return null;
     }
 
-    @Override
-    public List<PlayerDto> getOnPositionAndTeamId23() {
-        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId23();
-    }
-
-
+//    @Override
+//    public List<PlayerDto> getOnPositionNotNull() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionNotNull();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId7() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId7();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnHeightAndWeight() {
+//        return (List<PlayerDto>) playerRepository.getOnHeightAndWeight();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId10() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId10();
+//    }
+//
+//    @Override
+//    public Long getOnCount() {
+//        return  playerRepository.getOnCount();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId20() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId20();
+//    }
+//
+//    @Override
+//    public List<PlayerDto> getOnPositionAndTeamId21() {
+//        return (List<PlayerDto>) playerRepository.getOnPositionAndTeamId21();
+//    }
 }
+
+
+

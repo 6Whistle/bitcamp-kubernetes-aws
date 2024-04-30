@@ -29,7 +29,7 @@ public class PlayerController {
 
 
     @GetMapping("/soccer/2")
-    public ResponseEntity<List<PlayerDto>> getOnPosition() throws SQLException {
+    public ResponseEntity<List<?>> getOnPosition() throws SQLException {
         return ResponseEntity.ok(playerService.getOnPosition());
 
     }
@@ -73,10 +73,7 @@ public class PlayerController {
         return ResponseEntity.ok(playerService.getOnPositionAndTeamId21());
     }
 
-    @GetMapping("/soccer/23")
-    public ResponseEntity<List<PlayerDto>> getOnPositionAndTeamId23() throws SQLException {
-        return ResponseEntity.ok(playerService.getOnPositionAndTeamId23());
-    }
+
 
 
 
