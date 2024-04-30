@@ -12,7 +12,7 @@ import lombok.*;
 @Getter
 @ToString(exclude = "id")
 @Setter
-@Entity
+@Entity (name = "schedule")
 public class Schedule {
 
     @Id
