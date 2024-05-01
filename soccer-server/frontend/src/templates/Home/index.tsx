@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Heading } from 'components/Heading';
 import { instance } from 'config/axios-config';
 
@@ -6,7 +5,7 @@ function Home() {
 
   const clickButtonHandler = (e:any) => {
     instance().get(`/${e.target.value}`)
-    .then((res:any) => { alert(JSON.stringify(res)) })
+    .then((res:any) => { alert(JSON.stringify(res.data)) })
     .catch((error:any) => { alert(JSON.stringify(error)) })
   }
 
@@ -48,7 +47,7 @@ function Home() {
     </tr>
     </thead>
     <tbody>
-      {question.map((row:any) => <tr>
+      {question.map((row:any) => <tr key={row[0]} >
         <td>{row[0]}</td>
         <td>{row[1]}</td>
         <td><button value={row[0]} onClick={clickButtonHandler}>답</button></td>
