@@ -20,7 +20,7 @@ public interface TeamRepository extends JpaRepository<Team, Long>{
 
 
     @Query(value = "SELECT " + fromDto + "ORDER BY t.teamName ASC")
-    List<TeamDto> getTeamOrderByTeamName();
+    List<TeamDto> getTeamsOrderByTeamName();
 
     @Query(value =  
     "SELECT new map(t.teamName AS teamName, p.playerName AS playerName)" + 
@@ -30,20 +30,19 @@ public interface TeamRepository extends JpaRepository<Team, Long>{
     List<Map<String, Object>> getNotSelectedPostion();
 
     @Query(value = 
-    "SELECT new com.erichgamma.api.player.model.PlayerDto(" +
-    "p.id, p.playerId, p.name, p.teamId.teamId, p.playerName, p.ePlayerName, " + 
-    "p.nickname, p.joinYyyy, p.position, p.backNo, p.nation, p.birthDate, " +
-    "p.solar, p.height, p.weight) FROM team t " +
+    "SELECT new map(" +
+    "p.id AS id, p.playerId AS playerId, p.name AS name, p.teamId.teamId AS teamId, p.playerName AS playerName, " + 
+    "p.ePlayerName AS ePlayerName, p.nickname AS nickname, p.joinYyyy AS joinYyyy, p.position AS position, " + 
+    "p.backNo AS backNo, p.nation AS nation, p.birthDate AS birthDate, p.solar AS solar, p.height AS height, p.weight AS weight) FROM team t " +
     "JOIN player p ON t.teamId = p.teamId.teamId " +
     "WHERE p.height != \'\' " +
-    "AND t.teamId = '' " +
     "ORDER BY p.height, p.playerName")
-    List<PlayerDto> getSuwonDeojeonByHeight();
+    List<Map<String, Object>> getTeamsByteamName();
 
     @Query(value = 
     "SELECT new map(t.teamId AS 팀ID, t.teamName AS 팀명, ROUND(AVG(CAST(p.height AS double)), 2) AS 평균) FROM team t " + 
     "JOIN player p ON t.teamId = p.teamId.teamId " +
     "GROUP BY t.teamId, t.teamName")
-    List<Map<String, Object>> getIncheonByHeight();
+    List<Map<String, Object>> getHeightAvgByTeam();
     
 }

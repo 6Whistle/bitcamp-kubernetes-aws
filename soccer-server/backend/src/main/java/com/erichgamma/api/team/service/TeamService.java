@@ -33,5 +33,5 @@ public interface TeamService extends CommandService<TeamDto>, QueryService<TeamD
 
     List<?> getSuwonDeojeonByHeight();
 
-    List<?> getIncheonByHeight();
+    List<?> getHeightAvgByTeam();
 }

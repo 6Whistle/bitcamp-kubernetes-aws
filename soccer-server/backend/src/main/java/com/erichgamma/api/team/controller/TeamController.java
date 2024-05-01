@@ -39,7 +39,7 @@ public class TeamController {
     } 
 
     @GetMapping("/19")
-    public List<?> getIncheonByHeight(){
-        return teamService.getIncheonByHeight();
+    public List<?> getHeightAvgByTeam(){
+        return teamService.getHeightAvgByTeam();
     }
 }

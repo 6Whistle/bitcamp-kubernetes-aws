@@ -72,7 +72,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<?> getTeams() {
-        return teamRepository.getTeamOrderByTeamName();
+        return teamRepository.getTeamsOrderByTeamName();
     }
 
     @Override
@@ -82,14 +82,15 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<?> getSuwonDeojeonByHeight() {
-        return teamRepository.getSuwonDeojeonByHeight().stream()
-        .filter(i -> Integer.parseInt(i.getHeight()) >= 180 && Integer.parseInt(i.getHeight()) <= 180)
+        return teamRepository.getTeamsByteamName().stream()
+        .filter(i -> ((String)(i.get("teamName"))).equals("K02") || ((String)(i.get("teamName"))).equals("K10"))
+        .filter(i -> (Integer)(i.get("height")) >= 180 && (Integer)(i.get("height")) <= 183)
         .toList();
     }
 
     @Override
-    public List<?> getIncheonByHeight() {
-        return teamRepository.getIncheonByHeight().stream()
+    public List<?> getHeightAvgByTeam() {
+        return teamRepository.getHeightAvgByTeam().stream()
         .filter(i -> (Double)(i.get("평균")) < 176.59)
         .toList();
     }
